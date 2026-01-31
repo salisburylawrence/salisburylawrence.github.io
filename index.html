@@ -333,6 +333,11 @@
     header {
   padding: 24px 40px;
 }
+    .brand-logo {
+  height: 44px;   /* nav-bar friendly */
+  width: auto;
+  display: block;
+}
   </style>
 </head>
 
@@ -343,14 +348,12 @@
     <div class="container">
       <div class="topbar-inner">
         <a class="brand" href="#top" aria-label="One Reality home">
-          <div class="brand-mark" aria-hidden="true">
-            <!-- Optional: use a small square mark; replace logo.png if you like -->
-            <img src="logo.png" alt="" onerror="this.style.display='none'">
-          </div>
-          <div class="brand-name">
-            <strong>One Reality</strong>
-            <span>Efficiency Through Innovation</span>
-          </div>
+         <img
+  src="assets/assets/images/one-reality-logo.png"
+  alt="One Reality"
+  class="brand-logo"
+>
+
         </a>
 
         <nav aria-label="Primary navigation">
