@@ -302,6 +302,11 @@
 
     /* Responsive */
     @media (max-width: 920px){
+      .case-study-main,
+      .case-study-metrics{
+        grid-column: span 12;
+      }
+
       .hero-grid{grid-template-columns: 1fr; gap:18px;}
       .contact-box{grid-template-columns: 1fr;}
       nav{display:none;}
@@ -541,7 +546,7 @@
       </div>
 
       <div class="grid">
-        <div class="card" style="grid-column: span 7;">
+        <div class="card case-study-main">
           <div class="tag">Case study</div>
           <h3>eLight v2.0 (LED refurbishment lifecycle platform)</h3>
           <p>
@@ -555,7 +560,7 @@
           </p>
         </div>
 
-        <div class="card" style="grid-column: span 5;">
+        <div class="card case-study-metrics">
           <div class="tag">Measured impact</div>
           <h3>Results since launch</h3>
           <p class="muted" style="margin-bottom:12px;">Operational scale, throughput and commercial value delivered via the platform.</p>
@@ -603,10 +608,10 @@
             <span>→</span>
           </a>
 
-          <a href="tel:+447447509430">
+          <a href="tel:+447894666332">
             <div>
               <strong>Mobile</strong><br>
-              <small>+44 7447 509 430</small>
+              <small>+44 7894 666 332</small>
             </div>
             <span>→</span>
           </a>
