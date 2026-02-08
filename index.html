@@ -6,189 +6,589 @@
   <title>One Reality | Automation & Operational Efficiency</title>
   <meta name="description" content="One Reality helps organisations increase earning potential through tailored automation, clear data, and software-led improvement." />
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Styles unchanged for brevity -->
-</head>
-<body>
+  <style>
+    :root{
+      --ink:#041E42;      /* deep navy */
+      --navy:#002D62;     /* accent navy */
+      --slate:#869397;    /* slate */
+      --bg:#ffffff;
+      --panel:#f6f8fb;
+      --line:#e6ebf2;
+      --shadow: 0 10px 30px rgba(4,30,66,.10);
+      --radius: 16px;
+      --max: 1100px;
+    }
 
-<!-- Topbar -->
-<div class="topbar">
-  <div class="container">
-    <div class="topbar-inner">
-      <a class="brand" href="#top" aria-label="One Reality home">
-        <img src="assets/assets/images/one-reality-logo.png" alt="One Reality" class="brand-logo">
-      </a>
-      <nav aria-label="Primary navigation">
-        <a href="#services">Services</a>
-        <a href="#approach">How we work</a>
-        <a href="#skills">Skills</a>
-        <a href="#testimonials">Testimonials</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a class="cta" href="#contact">Get in touch →</a>
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.6;
+    }
+
+    a{color:inherit}
+    .container{max-width:var(--max); margin:0 auto; padding:0 20px;}
+    .muted{color:var(--slate);}
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px; border:1px solid var(--line);
+      border-radius:999px; background:#fff;
+      font-size:13px; color:var(--navy);
+    }
+    .dot{width:8px; height:8px; border-radius:50%; background:var(--navy); box-shadow:0 0 0 4px rgba(0,45,98,.10);}
+
+    /* Top bar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      background:rgba(255,255,255,.85);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; text-decoration:none;
+    }
+
+    nav{display:flex; gap:16px; align-items:center;}
+    nav a{
+      font-size:14px;
+      text-decoration:none;
+      color:var(--ink);
+      opacity:.85;
+      padding:8px 10px;
+      border-radius:10px;
+      transition:background .2s ease, opacity .2s ease;
+    }
+    nav a:hover{background:var(--panel); opacity:1;}
+    .cta{
+      display:inline-flex; align-items:center; gap:10px;
+      background:var(--navy);
+      color:#fff;
+      padding:10px 14px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:600;
+      box-shadow: 0 10px 18px rgba(0,45,98,.18);
+      transition: transform .15s ease, box-shadow .15s ease;
+      white-space:nowrap;
+    }
+    .cta:hover{transform: translateY(-1px); box-shadow: 0 14px 22px rgba(0,45,98,.20);}
+    .cta:active{transform: translateY(0);}
+
+    /* Hero */
+    .hero{
+      padding:64px 0 30px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:-120px -120px auto auto;
+      width:420px; height:420px;
+      background: radial-gradient(circle at 30% 30%, rgba(0,45,98,.20), rgba(0,45,98,0) 60%);
+      transform: rotate(10deg);
+      pointer-events:none;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:34px;
+      align-items:start;
+    }
+    h1{
+      margin:14px 0 10px;
+      font-size:44px;
+      line-height:1.08;
+      letter-spacing:-.04em;
+    }
+    .subhead{
+      font-size:18px;
+      color:var(--slate);
+      margin:0 0 22px;
+      max-width:58ch;
+    }
+    .hero-actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center;}
+    .ghost{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:#fff;
+      text-decoration:none;
+      font-weight:600;
+      color:var(--ink);
+      transition: background .2s ease, transform .15s ease;
+    }
+    .ghost:hover{background:var(--panel); transform: translateY(-1px);}
+    .hero-card{
+      background: #fff;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:18px;
+    }
+    .hero-card .logo-row{
+      display:flex; align-items:center; gap:14px;
+      padding:14px;
+      border-radius:14px;
+      background: linear-gradient(135deg, rgba(0,45,98,.10), rgba(134,147,151,.10));
+      border:1px solid rgba(0,45,98,.12);
+      margin-bottom:14px;
+    }
+    .hero-card .logo-row img{
+      width:54px; height:54px; object-fit:contain;
+      background:#fff; border-radius:12px; padding:8px;
+      border:1px solid var(--line);
+    }
+    .hero-card h3{margin:0; font-size:16px;}
+    .hero-card p{margin:6px 0 0; color:var(--slate); font-size:14px;}
+    .stats{
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:12px; margin-top:14px;
+    }
+    .stat{
+      padding:14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: var(--panel);
+    }
+    .stat strong{display:block; font-size:14px;}
+    .stat span{display:block; color:var(--slate); font-size:13px; margin-top:4px;}
+
+    /* Sections */
+    section{padding:56px 0;}
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:18px;
+      margin-bottom:20px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size:28px;
+      letter-spacing:-.02em;
+      color:var(--navy);
+    }
+    .section-title p{margin:0; color:var(--slate); max-width:60ch;}
+
+    /* Cards / grids */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:16px;
+    }
+    .card{
+      grid-column: span 6;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 22px rgba(4,30,66,.08);
+      padding:18px;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .card:hover{transform: translateY(-2px); box-shadow: 0 14px 30px rgba(4,30,66,.12);}
+    .card h3{margin:0 0 8px; font-size:18px; color:var(--ink);}
+    .card p{margin:0; color:var(--slate);}
+    .tag{
+      display:inline-flex; align-items:center;
+      padding:6px 10px; border-radius:999px;
+      border:1px solid rgba(0,45,98,.18);
+      background: rgba(0,45,98,.06);
+      color:var(--navy);
+      font-size:12px;
+      font-weight:600;
+      margin-bottom:10px;
+    }
+
+    /* 3-up cards for methodology */
+    .card.third{grid-column: span 4;}
+
+    .skills{
+      grid-column: span 7;
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:18px;
+    }
+    .skills ul{
+      margin:0; padding-left:18px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px 18px;
+      color:var(--ink);
+    }
+    .skills li{color:var(--ink);}
+    .skills li span{color:var(--slate);}
+
+    .approach{
+      grid-column: span 5;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:18px;
+    }
+    .approach p{margin:0 0 10px; color:var(--slate);}
+    .approach .quote{
+      margin-top:14px;
+      padding:14px;
+      border-radius:14px;
+      background: linear-gradient(135deg, rgba(0,45,98,.08), rgba(134,147,151,.10));
+      border:1px solid rgba(0,45,98,.12);
+      color:var(--ink);
+      font-weight:600;
+    }
+
+    /* Testimonials */
+    .testimonials .card{grid-column: span 6;}
+    blockquote{margin:0;}
+    blockquote p{margin:0; color:var(--ink); font-weight:600;}
+    blockquote footer{margin-top:10px; color:var(--slate); font-size:13px;}
+
+    /* Contact */
+    .contact{
+      background: linear-gradient(135deg, rgba(0,45,98,.06), rgba(134,147,151,.08));
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+    .contact-box{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:18px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:16px;
+      align-items:start;
+    }
+    .contact-box h3{margin:0 0 6px; color:var(--ink);}
+    .contact-box p{margin:0; color:var(--slate);}
+    .contact-actions{
+      display:flex; flex-direction:column; gap:10px;
+      align-items:stretch;
+    }
+    .contact-actions a{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      text-decoration:none;
+      background:var(--panel);
+      transition: transform .15s ease, background .2s ease;
+    }
+    .contact-actions a:hover{transform: translateY(-1px); background:#fff;}
+    .contact-actions small{color:var(--slate);}
+
+    footer.site-footer{
+      padding:26px 0;
+      color:var(--slate);
+      font-size:14px;
+    }
+    footer.site-footer .row{
+      display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;
+      border-top:1px solid var(--line);
+      padding-top:18px;
+    }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero-grid{grid-template-columns: 1fr; gap:18px;}
+      .contact-box{grid-template-columns: 1fr;}
+      nav{display:none;}
+      .card{grid-column: span 12;}
+      .card.third{grid-column: span 12;}
+      .skills{grid-column: span 12;}
+      .approach{grid-column: span 12;}
+      .testimonials .card{grid-column: span 12;}
+      h1{font-size:38px;}
+    }
+    @media (max-width: 520px){
+      h1{font-size:34px;}
+      .skills ul{grid-template-columns: 1fr;}
+    }
+
+    header { padding: 24px 40px; }
+    .brand-logo { height: 44px; width: auto; display:block; }
+  </style>
+</head>
+
+<body>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="One Reality home">
+          <img
+            src="assets/assets/images/one-reality-logo.png"
+            alt="One Reality"
+            class="brand-logo"
+          />
+        </a>
+
+        <nav aria-label="Primary navigation">
+          <a href="#services">Services</a>
+          <a href="#how">How we work</a>
+          <a href="#skills">Skills</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <a class="cta" href="#contact">Get in touch →</a>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Hero -->
-<main id="top" class="hero">
-  <div class="container">
-    <div class="hero-grid">
-      <div>
-        <span class="pill"><span class="dot"></span> Automation • Process improvement • Single source of truth</span>
-        <h1>Helping organisations grow earning potential through tailored automation.</h1>
-        <p class="subhead">
-          One Reality partners with leadership teams to identify productivity and capacity opportunities, then designs and delivers
-          practical automation and software solutions that fit how your business actually works.
-        </p>
-        <div class="hero-actions">
-          <a class="cta" href="#contact">Discuss your needs →</a>
-          <a class="ghost" href="#services">View services</a>
-        </div>
-      </div>
+  <!-- Hero -->
+  <main id="top" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <span class="pill"><span class="dot"></span> Automation • Process improvement • Single source of truth</span>
+          <h1>Helping organisations grow earning potential through tailored automation.</h1>
+          <p class="subhead">
+            One Reality partners with leadership teams to identify productivity and capacity opportunities, then designs and delivers practical automation
+            and software solutions that fit how your business actually works.
+          </p>
 
-      <aside class="hero-card" aria-label="Summary card">
-        <div class="logo-row">
-          <div>
-            <h3>One Reality Ltd</h3>
-            <p>Automation-led operational improvement for growing organisations.</p>
+          <div class="hero-actions">
+            <a class="cta" href="#contact">Discuss your needs →</a>
+            <a class="ghost" href="#services">View services</a>
           </div>
         </div>
-        <div class="stats">
-          <div class="stat"><strong>Focus</strong><span>Productivity & capacity</span></div>
-          <div class="stat"><strong>Approach</strong><span>Tailored, collaborative, practical</span></div>
-          <div class="stat"><strong>Strength</strong><span>Senior stakeholder engagement</span></div>
-          <div class="stat"><strong>Result</strong><span>More capacity, better decisions</span></div>
+
+        <aside class="hero-card" aria-label="Summary card">
+          <div class="logo-row">
+            <img src="logo.png" alt="One Reality logo" onerror="this.style.display='none'">
+            <div>
+              <h3>One Reality Ltd</h3>
+              <p>Automation-led operational improvement for growing organisations.</p>
+            </div>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>Focus</strong>
+              <span>Productivity & capacity</span>
+            </div>
+            <div class="stat">
+              <strong>Approach</strong>
+              <span>Tailored, collaborative, practical</span>
+            </div>
+            <div class="stat">
+              <strong>Strength</strong>
+              <span>Trusted senior engagement</span>
+            </div>
+            <div class="stat">
+              <strong>Result</strong>
+              <span>More capacity, better decisions</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2>Services</h2>
+          <p>Clear, practical support across people, processes, data and technology — designed to free capacity and deliver measurable improvements.</p>
         </div>
-      </aside>
-    </div>
-  </div>
-</main>
-
-<!-- Services -->
-<section id="services">
-  <div class="container">
-    <div class="section-title">
-      <div>
-        <h2>Services</h2>
-        <p>Practical support across people, process, data and technology — focused on freeing capacity and improving performance.</p>
-      </div>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <div class="tag">Operational Efficiency</div>
-        <h3>Find friction, remove waste, increase capacity</h3>
-        <p>Root-and-branch review of end-to-end processes to reduce duplication, eliminate bottlenecks, and free teams from low-value manual work.</p>
       </div>
 
-      <div class="card">
-        <div class="tag">Automation & Software</div>
-        <h3>Build solutions that fit — and get adopted</h3>
-        <p>Designing and implementing tailored automation and software solutions in collaboration with your teams, aligned to real workflows.</p>
-      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="tag">Operational Efficiency</div>
+          <h3>Find friction, remove waste, increase capacity</h3>
+          <p>Root-and-branch review of end-to-end processes to reduce duplication, eliminate bottlenecks, and free teams from low-value manual work.</p>
+        </div>
 
-      <div class="card">
-        <div class="tag">Data & Insight</div>
-        <h3>One trusted view of the business</h3>
-        <p>Identifying manual data silos and integrating systems to create a single source of truth for accurate reporting and decision-making.</p>
-      </div>
+        <div class="card">
+          <div class="tag">Automation & Software</div>
+          <h3>Build solutions that fit — and get adopted</h3>
+          <p>Designing and implementing tailored automation and software solutions in collaboration with your teams, aligned to real workflows.</p>
+        </div>
 
-      <div class="card">
-        <div class="tag">Delivery Support</div>
-        <h3>Calm delivery in complex environments</h3>
-        <p>Hands-on advisory and delivery support from discovery through to implementation — clear governance, pace, and outcomes.</p>
+        <div class="card">
+          <div class="tag">Data & Insight</div>
+          <h3>One trusted view of the business</h3>
+          <p>Identifying manual data silos and integrating systems to create a single source of truth for accurate reporting and decision-making.</p>
+        </div>
+
+        <div class="card">
+          <div class="tag">Advisory & Delivery Support</div>
+          <h3>Calm, hands-on delivery in complex environments</h3>
+          <p>Programme support providing clarity, challenge, and delivery focus — from initiation through to implementation.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- How we work -->
-<section id="approach">
-  <div class="container">
-    <div class="section-title">
-      <div>
-        <h2>How we work</h2>
-        <p>A clear, structured approach focused on outcomes — not theory.</p>
+  <!-- How we work -->
+  <section id="how">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2>How we work</h2>
+          <p>A simple, repeatable approach that keeps delivery practical and outcomes measurable.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card third">
+          <div class="tag">Step 1</div>
+          <h3>Discover</h3>
+          <p>Stakeholder consultation and process mapping across departments and partners to reveal the real constraints on productivity, capacity and data quality.</p>
+        </div>
+
+        <div class="card third">
+          <div class="tag">Step 2</div>
+          <h3>Design</h3>
+          <p>A prioritised improvement plan and solution design — automation, workflow redesign, data integration, dashboards or lightweight software tools.</p>
+        </div>
+
+        <div class="card third">
+          <div class="tag">Step 3</div>
+          <h3>Deliver</h3>
+          <p>Implementation with clear governance and adoption support — delivering reduced admin, fewer errors, connected data, and more capacity to grow.</p>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="grid">
-      <div class="card">
-        <h3>Discover</h3>
-        <p>We work with stakeholders across departments to map how work actually gets done, identifying constraints, risks, and opportunities for improvement.</p>
+  <!-- Skills + Approach -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2>Skills & Experience</h2>
+          <p>Experience operating with senior stakeholders and delivery teams to turn ambiguity into practical action.</p>
+        </div>
       </div>
-      <div class="card">
-        <h3>Design</h3>
-        <p>Insights are translated into a prioritised improvement plan and solution design — automation, workflow redesign, data integration, or software tools.</p>
-      </div>
-      <div class="card">
-        <h3>Deliver</h3>
-        <p>We implement with you, ensuring adoption, governance, and measurable outcomes that improve productivity and unlock capacity.</p>
+
+      <div class="grid">
+        <div class="skills">
+          <ul>
+            <li>Operational & process transformation <span>(efficiency, cost, flow)</span></li>
+            <li>Automation & workflow design <span>(manual to scalable)</span></li>
+            <li>Data strategy & reporting <span>(visibility, accuracy, trust)</span></li>
+            <li>Software & systems implementation <span>(selection to adoption)</span></li>
+            <li>Stakeholder & leadership engagement <span>(clear decisions)</span></li>
+            <li>Programme delivery & assurance <span>(governance, pace)</span></li>
+          </ul>
+        </div>
+
+        <div class="approach">
+          <h3>Our philosophy</h3>
+          <p>
+            High-performing organisations remove friction before they scale it. By aligning people, process, and technology around clear, accurate information,
+            we help clients see their business clearly — and act with confidence.
+          </p>
+          <div class="quote">There is one reality in a business. Good data makes it visible.</div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Skills & Experience -->
-<section id="skills">
-  <div class="container">
-    <div class="section-title">
-      <div>
-        <h2>Skills & Experience</h2>
-        <p>Experience turning ambiguity into practical, technology-led improvement.</p>
+  <!-- Testimonials -->
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2>What clients say</h2>
+          <p>Short, credible proof points. Keep these anonymised if needed and refine as you collect more feedback.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <blockquote>
+            <p>“Clear, pragmatic and focused on outcomes — quickly brought structure and momentum to a complex piece of work.”</p>
+            <footer>— Programme Sponsor</footer>
+          </blockquote>
+        </div>
+
+        <div class="card">
+          <blockquote>
+            <p>“Identified inefficiencies fast and helped deliver practical, technology-led improvements with measurable impact.”</p>
+            <footer>— Senior Leader</footer>
+          </blockquote>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="grid">
-      <div class="skills">
-        <ul>
-          <li>Process mapping & operational transformation <span>(efficiency, capacity)</span></li>
-          <li>Automation & workflow design <span>(manual to scalable)</span></li>
-          <li>Data integration & reporting <span>(single source of truth)</span></li>
-          <li>Software selection & implementation <span>(fit-for-purpose)</span></li>
-          <li>Stakeholder & leadership engagement <span>(clear decisions)</span></li>
-          <li>Pragmatic delivery & change <span>(what works in reality)</span></li>
-        </ul>
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2>Contact</h2>
+          <p>Tell us what you’re trying to achieve — we’ll respond promptly and keep it practical.</p>
+        </div>
       </div>
 
-      <div class="approach">
-        <h3>Our philosophy</h3>
-        <p>
-          High-performing organisations remove friction before they scale it. By aligning people, process, and technology around clear data,
-          we help clients see their business clearly — and act with confidence.
-        </p>
-        <div class="quote">There is one reality in a business. Good data makes it visible.</div>
+      <div class="contact-box">
+        <div>
+          <h3>Let’s discuss your goals</h3>
+          <p>
+            If you’d like to explore how One Reality could support your organisation, get in touch.
+          </p>
+          <p style="margin-top:12px;" class="muted">
+            Prefer email? That’s absolutely fine — we can start with a short call or a few bullet points.
+          </p>
+        </div>
+
+        <div class="contact-actions" aria-label="Contact links">
+          <a href="mailto:lawrence@one-reality.co.uk">
+            <div>
+              <strong>Email</strong><br>
+              <small>lawrence@one-reality.co.uk</small>
+            </div>
+            <span>→</span>
+          </a>
+
+          <a href="tel:+447894666332">
+            <div>
+              <strong>Mobile</strong><br>
+              <small>+44 7894 666 332</small>
+            </div>
+            <span>→</span>
+          </a>
+
+          <a href="#services">
+            <div>
+              <strong>View services</strong><br>
+              <small>Capabilities overview</small>
+            </div>
+            <span>→</span>
+          </a>
+        </div>
       </div>
+
+      <footer class="site-footer">
+        <div class="row">
+          <div>One Reality Ltd · Company No. 16944320</div>
+          <div>© <span id="year"></span> One Reality Ltd</div>
+        </div>
+      </footer>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Contact -->
-<section id="contact" class="contact">
-  <div class="container">
-    <div class="section-title">
-      <div>
-        <h2>Contact</h2>
-        <p>Tell us what you’re trying to achieve — we’ll keep it practical.</p>
-      </div>
-    </div>
-
-    <div class="contact-box">
-      <div>
-        <h3>Let’s discuss your goals</h3>
-        <p>If you’d like to explore how automation or software-led improvement could support your organisation, get in touch.</p>
-      </div>
-      <div class="contact-actions">
-        <a href="mailto:lawrence@one-reality.co.uk"><strong>Email</strong><span>→</span></a>
-        <a href="tel:+447894666332"><strong>Mobile</strong><span>→</span></a>
-      </div>
-    </div>
-  </div>
-</section>
-
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
