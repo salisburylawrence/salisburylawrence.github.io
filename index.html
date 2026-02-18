@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>One Reality | Fractional CTO & Automation Architect</title>
-  <meta name="description" content="One Reality acts as a fractional CTO and automation architect, helping organisations grow revenue, reduce error and accelerate delivery through live data and AI-led system design." />
+  <meta name="description" content="One Reality acts as a fractional CTO and automation architect, helping organisations grow revenue, reduce error and accelerate delivery through live data and AI-enabled systems — without increasing headcount." />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,9 +13,9 @@
 
   <style>
     :root{
-      --ink:#041E42;
-      --navy:#002D62;
-      --slate:#869397;
+      --ink:#041E42;      /* deep navy */
+      --navy:#002D62;     /* accent navy */
+      --slate:#869397;    /* slate */
       --bg:#ffffff;
       --panel:#f6f8fb;
       --line:#e6ebf2;
@@ -36,7 +36,7 @@
 
     a{color:inherit}
     .container{max-width:var(--max); margin:0 auto; padding:0 20px;}
-
+    .muted{color:var(--slate);}
     .pill{
       display:inline-flex; align-items:center; gap:10px;
       padding:8px 12px; border:1px solid var(--line);
@@ -45,6 +45,7 @@
     }
     .dot{width:8px; height:8px; border-radius:50%; background:var(--navy); box-shadow:0 0 0 4px rgba(0,45,98,.10);}
 
+    /* Top bar */
     .topbar{
       position:sticky; top:0; z-index:50;
       background:rgba(255,255,255,.85);
@@ -55,213 +56,644 @@
       display:flex; align-items:center; justify-content:space-between;
       padding:14px 0;
     }
+    .brand{
+      display:flex; align-items:center; gap:12px; text-decoration:none;
+    }
 
     nav{display:flex; gap:16px; align-items:center;}
     nav a{
       font-size:14px;
       text-decoration:none;
+      color:var(--ink);
       opacity:.85;
       padding:8px 10px;
       border-radius:10px;
+      transition:background .2s ease, opacity .2s ease;
     }
     nav a:hover{background:var(--panel); opacity:1;}
-
     .cta{
+      display:inline-flex; align-items:center; gap:10px;
       background:var(--navy);
       color:#fff;
-      padding:10px 16px;
+      padding:10px 14px;
       border-radius:12px;
       text-decoration:none;
       font-weight:600;
       box-shadow: 0 10px 18px rgba(0,45,98,.18);
+      transition: transform .15s ease, box-shadow .15s ease;
+      white-space:nowrap;
     }
+    .cta:hover{transform: translateY(-1px); box-shadow: 0 14px 22px rgba(0,45,98,.20);}
+    .cta:active{transform: translateY(0);}
 
+    /* Hero */
     .hero{
-      padding:72px 0 40px;
+      padding:64px 0 30px;
+      position:relative;
+      overflow:hidden;
     }
-
+    .hero::before{
+      content:"";
+      position:absolute; inset:-120px -120px auto auto;
+      width:420px; height:420px;
+      background: radial-gradient(circle at 30% 30%, rgba(0,45,98,.20), rgba(0,45,98,0) 60%);
+      transform: rotate(10deg);
+      pointer-events:none;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:34px;
+      align-items:start;
+    }
     h1{
-      margin:16px 0 16px;
-      font-size:48px;
-      line-height:1.05;
-      letter-spacing:-.03em;
+      margin:14px 0 10px;
+      font-size:44px;
+      line-height:1.08;
+      letter-spacing:-.04em;
     }
-
     .subhead{
-      font-size:20px;
+      font-size:18px;
       color:var(--slate);
-      max-width:60ch;
+      margin:0 0 22px;
+      max-width:58ch;
     }
+    .hero-actions{display:flex; gap:12px; flex-wrap:wrap; align-items:center;}
+    .ghost{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:#fff;
+      text-decoration:none;
+      font-weight:600;
+      color:var(--ink);
+      transition: background .2s ease, transform .15s ease;
+    }
+    .ghost:hover{background:var(--panel); transform: translateY(-1px);}
+    .hero-card{
+      background: #fff;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:18px;
+    }
+    .hero-card .logo-row{
+      display:flex; align-items:center; gap:14px;
+      padding:14px;
+      border-radius:14px;
+      background: linear-gradient(135deg, rgba(0,45,98,.10), rgba(134,147,151,.10));
+      border:1px solid rgba(0,45,98,.12);
+      margin-bottom:14px;
+    }
+    .hero-card .logo-row img{
+      width:54px; height:54px; object-fit:contain;
+      background:#fff; border-radius:12px; padding:8px;
+      border:1px solid var(--line);
+    }
+    .hero-card h3{margin:0; font-size:16px;}
+    .hero-card p{margin:6px 0 0; color:var(--slate); font-size:14px;}
+    .stats{
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:12px; margin-top:14px;
+    }
+    .stat{
+      padding:14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: var(--panel);
+    }
+    .stat strong{display:block; font-size:14px;}
+    .stat span{display:block; color:var(--slate); font-size:13px; margin-top:4px;}
 
-    section{padding:64px 0;}
-
+    /* Sections */
+    section{padding:56px 0;}
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:18px;
+      margin-bottom:20px;
+    }
     .section-title h2{
-      font-size:32px;
-      margin:0 0 12px;
+      margin:0;
+      font-size:28px;
+      letter-spacing:-.02em;
       color:var(--navy);
     }
+    .section-title p{margin:0; color:var(--slate); max-width:60ch;}
 
+    /* Cards / grids */
     .grid{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
-      gap:20px;
+      gap:16px;
     }
-
     .card{
       grid-column: span 6;
       background:#fff;
       border:1px solid var(--line);
       border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding:24px;
+      box-shadow: 0 8px 22px rgba(4,30,66,.08);
+      padding:18px;
+      transition: transform .15s ease, box-shadow .15s ease;
     }
-
-    .card.third{grid-column: span 4;}
-
+    .card:hover{transform: translateY(-2px); box-shadow: 0 14px 30px rgba(4,30,66,.12);}
+    .card h3{margin:0 0 8px; font-size:18px; color:var(--ink);}
+    .card p{margin:0; color:var(--slate);}
     .tag{
-      display:inline-block;
-      padding:6px 10px;
-      border-radius:999px;
-      background: rgba(0,45,98,.08);
+      display:inline-flex; align-items:center;
+      padding:6px 10px; border-radius:999px;
+      border:1px solid rgba(0,45,98,.18);
+      background: rgba(0,45,98,.06);
       color:var(--navy);
       font-size:12px;
       font-weight:600;
-      margin-bottom:12px;
+      margin-bottom:10px;
     }
 
-    .stats{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
+    /* 3-up cards for methodology */
+    .card.third{grid-column: span 4;}
+
+    /* Highlight section (Why this matters) */
+    .highlight{
+      background: linear-gradient(135deg, rgba(0,45,98,.05), rgba(134,147,151,.06));
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
     }
 
-    .stat{
-      padding:16px;
-      border-radius:14px;
+    .skills{
+      grid-column: span 7;
       background:var(--panel);
       border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:18px;
+    }
+    .skills ul{
+      margin:0; padding-left:18px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px 18px;
+      color:var(--ink);
+    }
+    .skills li{color:var(--ink);}
+    .skills li span{color:var(--slate);}
+
+    .approach{
+      grid-column: span 5;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:18px;
+    }
+    .approach p{margin:0 0 10px; color:var(--slate);}
+    .approach .quote{
+      margin-top:14px;
+      padding:14px;
+      border-radius:14px;
+      background: linear-gradient(135deg, rgba(0,45,98,.08), rgba(134,147,151,.10));
+      border:1px solid rgba(0,45,98,.12);
+      color:var(--ink);
+      font-weight:600;
     }
 
-    .stat strong{display:block; font-size:14px;}
-    .stat span{display:block; margin-top:6px; font-size:15px; font-weight:600;}
+    /* Testimonials */
+    .testimonials .card{grid-column: span 6;}
+    blockquote{margin:0;}
+    blockquote p{margin:0; color:var(--ink); font-weight:600;}
+    blockquote footer{margin-top:10px; color:var(--slate); font-size:13px;}
 
-    .case-study-main{grid-column: span 7;}
-    .case-study-metrics{grid-column: span 5;}
+    /* Contact */
+    .contact{
+      background: linear-gradient(135deg, rgba(0,45,98,.06), rgba(134,147,151,.08));
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+    .contact-box{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:18px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:16px;
+      align-items:start;
+    }
+    .contact-box h3{margin:0 0 6px; color:var(--ink);}
+    .contact-box p{margin:0; color:var(--slate);}
+    .contact-actions{
+      display:flex; flex-direction:column; gap:10px;
+      align-items:stretch;
+    }
+    .contact-actions a{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      text-decoration:none;
+      background:var(--panel);
+      transition: transform .15s ease, background .2s ease;
+    }
+    .contact-actions a:hover{transform: translateY(-1px); background:#fff;}
+    .contact-actions small{color:var(--slate);}
 
+    footer.site-footer{
+      padding:26px 0;
+      color:var(--slate);
+      font-size:14px;
+    }
+    footer.site-footer .row{
+      display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;
+      border-top:1px solid var(--line);
+      padding-top:18px;
+    }
+
+    /* Responsive */
     @media (max-width: 920px){
-      nav{display:none;}
-      .card, .card.third, .case-study-main, .case-study-metrics{
+      .case-study-main,
+      .case-study-metrics{
         grid-column: span 12;
       }
-      h1{font-size:36px;}
-      .stats{grid-template-columns:1fr;}
+
+      .hero-grid{grid-template-columns: 1fr; gap:18px;}
+      .contact-box{grid-template-columns: 1fr;}
+      nav{display:none;}
+      .card{grid-column: span 12;}
+      .card.third{grid-column: span 12;}
+      .skills{grid-column: span 12;}
+      .approach{grid-column: span 12;}
+      .testimonials .card{grid-column: span 12;}
+      h1{font-size:38px;}
     }
+    @media (max-width: 520px){
+      h1{font-size:34px;}
+      .skills ul{grid-template-columns: 1fr;}
+    }
+
+    header { padding: 24px 40px; }
+    .brand-logo { height: 44px; width: auto; display:block; }
   </style>
 </head>
 
 <body>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="One Reality home">
+          <img
+            src="assets/assets/images/one-reality-logo.png"
+            alt="One Reality"
+            class="brand-logo"
+          />
+        </a>
 
-<div class="topbar">
-  <div class="container">
-    <div class="topbar-inner">
-      <img src="assets/assets/images/one-reality-logo.png" alt="One Reality" style="height:44px;">
-      <nav>
-        <a href="#how">How we work</a>
-        <a href="#case-study">Example project</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a class="cta" href="#contact">Get in touch →</a>
-    </div>
-  </div>
-</div>
+        <nav aria-label="Primary navigation">
+          <a href="#services">Services</a>
+          <a href="#how">How we work</a>
+          <a href="#case-study">Example project</a>
+          <a href="#contact">Contact</a>
+        </nav>
 
-<main class="hero">
-  <div class="container">
-    <span class="pill"><span class="dot"></span> Fractional CTO • Automation Architect • Live Data</span>
-    <h1>Grow revenue. Reduce error. Accelerate delivery.</h1>
-    <p class="subhead">
-      One Reality acts as a fractional CTO and automation architect, designing and delivering live data platforms, AI-enabled workflows and scalable systems — without increasing headcount.
-    </p>
-  </div>
-</main>
-
-<section>
-  <div class="container">
-    <div class="section-title">
-      <h2>Why this matters</h2>
-    </div>
-    <p style="font-size:20px; max-width:70ch;">
-      In a world where trust is fragile and data is fragmented, businesses need one clear, reliable and dependable source of live operational truth. Fragmented systems create delay, human error and lost revenue potential.
-      One Reality exists to design the architecture that removes those constraints.
-    </p>
-  </div>
-</section>
-
-<section id="how">
-  <div class="container">
-    <div class="section-title">
-      <h2>How we work</h2>
-    </div>
-    <div class="grid">
-      <div class="card third">
-        <div class="tag">Discover</div>
-        <p>Consultation and process mapping across departments and partners to identify productivity constraints, administrative drag and data quality risks.</p>
-      </div>
-      <div class="card third">
-        <div class="tag">Design</div>
-        <p>Full workflow redesign with AI and automation potential identified. Live data integration defined with budgets, timelines and ROI modelling before build begins.</p>
-      </div>
-      <div class="card third">
-        <div class="tag">Deliver</div>
-        <p>Acting in a CTO capacity, One Reality oversees development partners to build applications, tools and data environments that match the design intent and deliver measurable impact.</p>
+        <a class="cta" href="#contact">Get in touch →</a>
       </div>
     </div>
   </div>
-</section>
 
-<section id="case-study">
-  <div class="container">
-    <div class="section-title">
-      <h2>Example project</h2>
+  <!-- Hero -->
+  <main id="top" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <span class="pill"><span class="dot"></span> Fractional CTO • Automation Architect • Live Data</span>
+          <h1>Grow revenue. Reduce error. Accelerate delivery.</h1>
+          <p class="subhead">
+            One Reality acts as a fractional CTO and automation architect, designing and delivering live data platforms, AI-enabled workflows and scalable systems —
+            without increasing headcount.
+          </p>
+
+          <div class="hero-actions">
+            <a class="cta" href="#contact">Discuss your needs →</a>
+            <a class="ghost" href="#how">How we work</a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Summary card">
+          <div class="logo-row">
+            <img src="logo.png" alt="One Reality logo" onerror="this.style.display='none'">
+            <div>
+              <h3>One Reality Ltd</h3>
+              <p>CTO-level clarity and automation architecture that scales.</p>
+            </div>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>Outcome</strong>
+              <span>More capacity</span>
+            </div>
+            <div class="stat">
+              <strong>Benefit</strong>
+              <span>Fewer errors</span>
+            </div>
+            <div class="stat">
+              <strong>Foundation</strong>
+              <span>Live data truth</span>
+            </div>
+            <div class="stat">
+              <strong>Delivery</strong>
+              <span>Faster turnaround</span>
+            </div>
+          </div>
+        </aside>
+      </div>
     </div>
+  </main>
 
-    <div class="grid">
-      <div class="card case-study-main">
-        <div class="tag">Case study</div>
-        <h3>eLight v2.0 – LED refurbishment lifecycle platform</h3>
-        <p>
-          Developed from the ground up to cover every stage of an LED lighting refurbishment project, enabling automation across Survey, Solution Design, Mobilisation, Delivery, Completion and Aftercare — with one central live data source of truth.
-        </p>
-        <p><strong>Phase 1 launched June 2025.</strong> One Reality continues to support delivery and ongoing evolution in Phase 2.</p>
+  <!-- Why this matters -->
+  <section class="highlight" id="why">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2>Why this matters</h2>
+          <p>When trust is fragile, your data and systems need to be dependable — across your teams and partners.</p>
+        </div>
       </div>
 
-      <div class="card case-study-metrics">
-        <div class="tag">Measured impact</div>
-        <div class="stats">
-          <div class="stat"><strong>Projects processed</strong><span>386</span></div>
-          <div class="stat"><strong>Fittings surveyed</strong><span>205,164</span></div>
-          <div class="stat"><strong>Net revenue</strong><span>£22.6m</span></div>
-          <div class="stat"><strong>Avg. site value</strong><span>£58,549</span></div>
-          <div class="stat"><strong>Avg. fittings</strong><span>531</span></div>
-          <div class="stat"><strong>Turnaround</strong><span>Halved</span></div>
+      <div class="grid">
+        <div class="card" style="grid-column: span 7;">
+          <div class="tag">One source of truth</div>
+          <h3>Reliable live data enables confident decisions</h3>
+          <p>
+            In a world where nobody is sure what is true or what is fake, organisations perform best when decisions are based on
+            one clear, reliable, dependable and stable source of live operational data.
+          </p>
+          <p style="margin-top:12px;">
+            Fragmented systems and manual handoffs create delay, human error and stale information — limiting capacity and constraining revenue growth.
+            One Reality designs the architecture that removes those constraints.
+          </p>
+        </div>
+
+        <div class="card" style="grid-column: span 5;">
+          <div class="tag">Designed to improve</div>
+          <h3>Without adding headcount</h3>
+          <p class="muted">Typical outcomes from automation-led redesign:</p>
+          <ul style="margin:10px 0 0; padding-left:18px; color:var(--ink);">
+            <li><strong>Revenue growth</strong> through higher throughput</li>
+            <li><strong>Reduced human error</strong> via automation and validation</li>
+            <li><strong>Faster turnaround</strong> through connected workflows</li>
+          </ul>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="contact">
-  <div class="container">
-    <div class="section-title">
-      <h2>Contact</h2>
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2>Services</h2>
+          <p>CTO-level direction across people, process, data and technology — designed to unlock capacity and measurable improvement.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="tag">Discovery & Process Mapping</div>
+          <h3>Identify constraints and targets for improvement</h3>
+          <p>Consultation and end-to-end process mapping across departments and partners, focusing on productivity, admin load and data quality.</p>
+        </div>
+
+        <div class="card">
+          <div class="tag">Architecture & Solution Design</div>
+          <h3>Design AI and automation into the workflow</h3>
+          <p>Workflow redesign, live data integration and automation/AI opportunities identified — with budgets, timelines and ROI modelling.</p>
+        </div>
+
+        <div class="card">
+          <div class="tag">CTO Delivery Oversight</div>
+          <h3>Direct build partners with clarity and control</h3>
+          <p>Acting as a fractional CTO, One Reality oversees preferred developers to deliver the application, tools and datasets defined in the design.</p>
+        </div>
+
+        <div class="card">
+          <div class="tag">Live Data & Governance</div>
+          <h3>One dependable source of operational truth</h3>
+          <p>Eliminate manual data silos with shared live data and governance — reducing rework, improving trust and accelerating delivery.</p>
+        </div>
+      </div>
     </div>
-    <p style="font-size:18px; max-width:60ch;">
-      If you need CTO-level clarity without hiring a full-time executive, get in touch.
-    </p>
-    <p><strong>Email:</strong> lawrence@one-reality.co.uk<br>
-       <strong>Mobile:</strong> +44 7447 509 430</p>
-  </div>
-</section>
+  </section>
 
+  <!-- How we work -->
+  <section id="how">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2>How we work</h2>
+          <p>A simple, repeatable approach — consultative, planned, and delivered with CTO-level accountability.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card third">
+          <div class="tag">Phase 1</div>
+          <h3>Discover</h3>
+          <p>Consultation and process mapping across departments and business partners to identify scope and targets for improvement — with focus on productivity, admin and data quality.</p>
+        </div>
+
+        <div class="card third">
+          <div class="tag">Phase 2</div>
+          <h3>Design</h3>
+          <p>Planned workflow redesign with AI and automation potential identified. Live data integration defined, including budget, timelines and ROI proposal.</p>
+        </div>
+
+        <div class="card third">
+          <div class="tag">Phase 3</div>
+          <h3>Deliver</h3>
+          <p>Acting in a CTO role and working with preferred app developers, One Reality oversees and directs delivery of the application, tools and datasets outlined in the design.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills + Approach -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2>Skills & Experience</h2>
+          <p>Experience engaging senior stakeholders and delivery teams to turn ambiguity into practical, measurable action.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="skills">
+          <ul>
+            <li>Operational transformation <span>(efficiency, capacity)</span></li>
+            <li>Automation & workflow design <span>(repeatable delivery)</span></li>
+            <li>Live data architecture <span>(single source of truth)</span></li>
+            <li>Software delivery oversight <span>(CTO-level direction)</span></li>
+            <li>Stakeholder engagement <span>(alignment & decisions)</span></li>
+            <li>Governance & assurance <span>(pace with control)</span></li>
+          </ul>
+        </div>
+
+        <div class="approach">
+          <h3>Our philosophy</h3>
+          <p>
+            High-performing organisations remove friction before they scale it. By aligning people, process, and technology around clear, accurate information,
+            we help clients see their business clearly — and act with confidence.
+          </p>
+          <div class="quote">There is one reality in a business. Good data makes it visible.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2>What clients say</h2>
+          <p>Short, credible proof points. Keep these anonymised if needed and refine as you collect more feedback.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <blockquote>
+            <p>“Clear, pragmatic and focused on outcomes — quickly brought structure and momentum to a complex piece of work.”</p>
+            <footer>— Programme Sponsor</footer>
+          </blockquote>
+        </div>
+
+        <div class="card">
+          <blockquote>
+            <p>“Identified inefficiencies fast and helped deliver practical, technology-led improvements with measurable impact.”</p>
+            <footer>— Senior Leader</footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Study -->
+  <section id="case-study">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2>Example project</h2>
+          <p>A recent engagement showing how automation and one trusted view of data can increase capacity and speed delivery.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card case-study-main">
+          <div class="tag">Case study</div>
+          <h3>eLight v2.0 (LED refurbishment lifecycle platform)</h3>
+          <p>
+            eLight v2.0 was developed from the ground up to cover every key stage of an LED lighting refurbishment project.
+            Through careful system architecture, the platform enables automation across Survey, Solution Design, Mobilisation,
+            Delivery, Completion and Aftercare — with live shared data providing a single source of truth.
+          </p>
+          <p style="margin-top:12px;">
+            <strong>Phase 1</strong> (Survey, Design & Propose) launched in <strong>June 2025</strong>. One Reality is now supporting <strong>Phase 2</strong>
+            (Mobilise, Deliver, Complete & Maintain) to carry design intent through to implementation and ongoing improvement.
+          </p>
+        </div>
+
+        <div class="card case-study-metrics">
+          <div class="tag">Measured impact</div>
+          <h3>Results since launch</h3>
+          <p class="muted" style="margin-bottom:12px;">Operational scale, throughput and commercial value delivered via the platform.</p>
+
+          <div class="stats" style="margin-top:0;">
+            <div class="stat"><strong>Projects processed</strong><span>386</span></div>
+            <div class="stat"><strong>Fittings surveyed</strong><span>205,164</span></div>
+            <div class="stat"><strong>Net revenue value</strong><span>£22.6m</span></div>
+            <div class="stat"><strong>Avg. value per site</strong><span>£58,549</span></div>
+            <div class="stat"><strong>Avg. fittings per project</strong><span>531</span></div>
+            <div class="stat"><strong>Turnaround time</strong><span>Halved</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact (interactive buttons preserved) -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-title">
+        <div>
+          <h2>Contact</h2>
+          <p>Tell us what you’re trying to achieve — we’ll respond promptly and keep it practical.</p>
+        </div>
+      </div>
+
+      <div class="contact-box">
+        <div>
+          <h3>Let’s discuss your goals</h3>
+          <p>
+            If you need CTO-level clarity without hiring a full-time executive, get in touch.
+          </p>
+          <p style="margin-top:12px;" class="muted">
+            Prefer email? That’s absolutely fine — we can start with a short call or a few bullet points.
+          </p>
+        </div>
+
+        <div class="contact-actions" aria-label="Contact links">
+          <a href="mailto:lawrence@one-reality.co.uk">
+            <div>
+              <strong>Email</strong><br>
+              <small>lawrence@one-reality.co.uk</small>
+            </div>
+            <span>→</span>
+          </a>
+
+          <!-- Phone number is set by the script below (so it can't 'revert') -->
+          <a id="phoneLink" href="tel:+447000000000">
+            <div>
+              <strong>Mobile</strong><br>
+              <small id="phoneText">+44 7000 000 000</small>
+            </div>
+            <span>→</span>
+          </a>
+
+          <a href="#services">
+            <div>
+              <strong>View services</strong><br>
+              <small>Capabilities overview</small>
+            </div>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <div class="row">
+          <div>One Reality Ltd · Company No. 16944320</div>
+          <div>© <span id="year"></span> One Reality Ltd</div>
+        </div>
+      </footer>
+    </div>
+  </section>
+
+  <script>
+    // ====== EDIT THESE TWO LINES ONLY ======
+    const PHONE_E164 = "+447447509430";        // e.g. +447700900123 (no spaces)
+    const PHONE_DISPLAY = "+44 7447 509 430";  // formatted display text
+    // ======================================
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const phoneLink = document.getElementById("phoneLink");
+    const phoneText = document.getElementById("phoneText");
+    if (phoneLink && phoneText) {
+      phoneLink.href = "tel:" + PHONE_E164;
+      phoneText.textContent = PHONE_DISPLAY;
+    }
+  </script>
 </body>
 </html>
