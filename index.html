@@ -959,6 +959,26 @@
       .phase-row { grid-template-columns: 1fr; gap: 20px; }
       .phase-left { position: static; }
     }
+
+/* READABILITY IMPROVEMENTS */
+:root {
+  --mid: rgba(238,241,244,0.85);
+  --dim: rgba(238,241,244,0.65);
+}
+body { font-size: 17px; }
+.hero-sub { font-size: 1.15rem; }
+.why-left p, .exp-left p, .proof-left p,
+.contact-left p, .contact-right p, .phase-right p { font-size: 1rem; }
+.cap-card p { font-size: 0.92rem; }
+.why-item p { font-size: 0.9rem; }
+
+@media (max-width: 768px) {
+  .hero-sub { font-size: 1.05rem; }
+  .cap-card p, .why-item p, .proof-phase p { font-size: 0.95rem; }
+  .form-group input, .form-group textarea { font-size: 1rem; padding: 14px 16px; }
+  .form-submit { font-size: 0.9rem; padding: 16px; }
+}
+
   </style>
 </head>
 <body>
@@ -1287,28 +1307,31 @@
           </a>
         </div>
       </div>
-<div class="contact-right reveal">
-  <p>Share a few bullet points about your programme and we'll propose a sensible next step.</p>
-  <form action="https://formspree.io/f/mqednopr" method="POST">
-    <div class="form-group">
-      <label>Your name</label>
-      <input type="text" name="name" placeholder="Lawrence Smith" required>
+
+      <div class="contact-right reveal">
+        <p>Share a few bullet points about your programme and we'll propose a sensible next step.</p>
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label>Your name</label>
+            <input type="text" placeholder="Lawrence Smith" required>
+          </div>
+          <div class="form-group">
+            <label>Organisation</label>
+            <input type="text" placeholder="Company name" required>
+          </div>
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="email" placeholder="you@company.com" required>
+          </div>
+          <div class="form-group">
+            <label>What are you working on?</label>
+            <textarea placeholder="A few bullet points about your programme, challenge, or question…" required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send message →</button>
+        </form>
+      </div>
     </div>
-    <div class="form-group">
-      <label>Organisation</label>
-      <input type="text" name="organisation" placeholder="Company name" required>
-    </div>
-    <div class="form-group">
-      <label>Email address</label>
-      <input type="email" name="email" placeholder="you@company.com" required>
-    </div>
-    <div class="form-group">
-      <label>What are you working on?</label>
-      <textarea name="message" placeholder="A few bullet points about your programme, challenge, or question…" required></textarea>
-    </div>
-    <button type="submit" class="form-submit">Send message →</button>
-  </form>
-</div>
+  </div>
 </section>
 
 <!-- FOOTER -->
