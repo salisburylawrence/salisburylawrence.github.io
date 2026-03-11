@@ -1310,25 +1310,25 @@ body { font-size: 17px; }
 
       <div class="contact-right reveal">
         <p>Share a few bullet points about your programme and we'll propose a sensible next step.</p>
-        <form onsubmit="handleSubmit(event)">
-          <div class="form-group">
-            <label>Your name</label>
-            <input type="text" placeholder="Lawrence Smith" required>
-          </div>
-          <div class="form-group">
-            <label>Organisation</label>
-            <input type="text" placeholder="Company name" required>
-          </div>
-          <div class="form-group">
-            <label>Email address</label>
-            <input type="email" placeholder="you@company.com" required>
-          </div>
-          <div class="form-group">
-            <label>What are you working on?</label>
-            <textarea placeholder="A few bullet points about your programme, challenge, or question…" required></textarea>
-          </div>
-          <button type="submit" class="form-submit">Send message →</button>
-        </form>
+       <form onsubmit="handleSubmit(event)">
+  <div class="form-group">
+    <label>Your name</label>
+    <input type="text" name="name" placeholder="Lawrence Smith" required>
+  </div>
+  <div class="form-group">
+    <label>Organisation</label>
+    <input type="text" name="organisation" placeholder="Company name" required>
+  </div>
+  <div class="form-group">
+    <label>Email address</label>
+    <input type="email" name="email" placeholder="you@company.com" required>
+  </div>
+  <div class="form-group">
+    <label>What are you working on?</label>
+    <textarea name="message" placeholder="A few bullet points about your programme, challenge, or question…" required></textarea>
+  </div>
+  <button type="submit" class="form-submit">Send message →</button>
+</form>
       </div>
     </div>
   </div>
@@ -1352,22 +1352,41 @@ body { font-size: 17px; }
       }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
   reveals.forEach(el => observer.observe(el));
 
   // Form handler
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const btn = e.target.querySelector('.form-submit');
-    btn.textContent = 'Message sent ✓';
-    btn.style.background = '#2e7d52';
+    btn.textContent = 'Sending…';
     btn.disabled = true;
+
+    const data = new FormData(e.target);
+
+    try {
+      const response = await fetch('https://formspree.io/f/mqednopr', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        btn.textContent = 'Message sent ✓';
+        btn.style.background = '#2e7d52';
+        e.target.reset();
+      } else {
+        btn.textContent = 'Something went wrong — try again';
+        btn.disabled = false;
+      }
+    } catch (error) {
+      btn.textContent = 'Something went wrong — try again';
+      btn.disabled = false;
+    }
   }
 
   // Active nav highlight
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
-
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(s => {
